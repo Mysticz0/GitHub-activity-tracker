@@ -56,6 +56,10 @@ def api_search(username):
             else:
                 print(f"Created a repository {repo}")
 
+        if item["type"] == "PublicEvent":
+            repo = item["repo"]["name"]
+            print(f"Made repository '{repo}' public")
+        
         events[item["type"]] += 1
 
     if push_event != {}:

@@ -19,24 +19,6 @@ def api_search(username):
     with open("activity.json", "r") as f:
         data = json.load(f)
 
-    events = {
-        "CommitCommentEvent" : 0,
-        "CreateEvent" : 0,
-        "DeleteEvent" : 0,
-        "DiscussionEvent" : 0,
-        "ForkEvent" : 0,
-        "GollumEvent" : 0,
-        "IssueCommentEvent" : 0,
-        "IssuesEvent" : 0,
-        "MemberEvent" : 0,
-        "PublicEvent" : 0,
-        "PullRequestEvent" : 0,
-        "PullRequestReviewEvent" : 0,
-        "PullRequestReviewCommentEvent" : 0,
-        "PushEvent" : 0,
-        "ReleaseEvent" : 0,
-        "WatchEvent" : 0}
-
     push_event = {}
 
     for item in data:
@@ -67,13 +49,9 @@ def api_search(username):
             
             print(f"{pull_request_action} a pull request '{pull_request_name}' in {repo}")
 
-        events[item["type"]] += 1
-
     if push_event != {}:
         for push in push_event:
             print(f"Pushed {push_event[push]} commits to {push}")
-
-    print(events)
 
 def main():
     parser = argparse.ArgumentParser(description="GitHub Activity CLI")

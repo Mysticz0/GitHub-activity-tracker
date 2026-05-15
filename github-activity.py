@@ -59,7 +59,14 @@ def api_search(username):
         if item["type"] == "PublicEvent":
             repo = item["repo"]["name"]
             print(f"Made repository '{repo}' public")
-        
+
+        if item["type"] == "PullRequestEvent":
+            repo = item["repo"]["name"]
+            pull_request_action = item["payload"]["action"].capitalize()
+            pull_request_name = item["payload"]["pull_request"]["head"]["ref"]
+            
+            print(f"{pull_request_action} a pull request '{pull_request_name}' in {repo}")
+
         events[item["type"]] += 1
 
     if push_event != {}:
